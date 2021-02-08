@@ -16,13 +16,13 @@ public interface PieceModel {
 	
 	/**
 	 * @param coord
-	 * @return true si la pièce est aux coordonnées passées en paramètre
+	 * @return true si la piÃ©ce est aux coordonnÃ©es passÃ©es en paramÃ©tre
 	 */
 	public boolean hasThisCoord(Coord coord);
 	
 	/**
 	 * @param coord the coord to set
-	 * le déplacement d'une pièce change ses coordonnées
+	 * le dï¿½placement d'une piï¿½ce change ses coordonnï¿½es
 	 */
 	public void move(Coord coord);
 
@@ -36,13 +36,13 @@ public interface PieceModel {
 	/**
 	 * @param targetCoord
 	 * @param isPieceToCapture
-	 * @return true si le déplacement est légal
+	 * @return true si le dï¿½placement est lï¿½gal
 	 */
 	public boolean isMoveOk(Coord targetCoord, boolean isPieceToCapture);
 
 	/**
 	 * @param targetCoord
-	 * @return liste des coordonnées des cases traversées par itinéraire de déplacement
+	 * @return liste des coordonnï¿½es des cases traversï¿½es par itinï¿½raire de dï¿½placement
 	 */
 	public List<Coord> getCoordsOnItinerary(Coord targetCoord);
 
