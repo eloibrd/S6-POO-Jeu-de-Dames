@@ -73,7 +73,11 @@ public class Coord implements Comparable<Coord>{
 	
 	@Override
 	public boolean equals(Object o) {
-	    return compareTo((Coord)o)==0;
+		if(o instanceof Coord) {
+			return compareTo((Coord)o)==0;
+		}else {
+			return false;
+		}
 	}
 
 }
