@@ -1,0 +1,11 @@
+/BoardGame.class
+/Coord.class
+/Model.class
+/ModelConfig.class
+/ModelFactory.class
+/ModelImplementor.class
+/PawnModel.class
+/PieceModel.class
+/Promotable.class
+/QueenModel.class
+/TestModel.class
