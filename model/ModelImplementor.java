@@ -54,12 +54,10 @@ public class ModelImplementor {
 		boolean isMovePieceOk = false;
 
 		if(Coord.coordonnees_valides(targetCoord)) {
-			if(!isPiecehere(targetCoord)) {
-				PieceModel piece = findPiece(initCoord);
-				if(piece!=null) {
-					if(piece.isMoveOk(targetCoord, isPieceToTake)) {
-						isMovePieceOk=true;
-					}
+			PieceModel piece = findPiece(initCoord);
+			if(piece!=null) {
+				if(piece.isMoveOk(targetCoord, isPieceToTake)) {
+					isMovePieceOk=true;
 				}
 			}
 		}
@@ -72,9 +70,7 @@ public class ModelImplementor {
 
 		boolean isMovePieceDone = false;
 		boolean isPieceToTake = (initCoord.getColonne() == targetCoord.getColonne()+2 || initCoord.getColonne() == targetCoord.getColonne()-2) && (initCoord.getLigne() == targetCoord.getLigne()-2 || initCoord.getLigne() == targetCoord.getLigne()+2);
-		System.out.println("piece to take : "+isPieceToTake);
 		if(isMovePieceOk(initCoord, targetCoord, isPieceToTake)) {
-			System.out.println("moving piece");
 			findPiece(initCoord).move(targetCoord);
 			isMovePieceDone = true;
 		}
