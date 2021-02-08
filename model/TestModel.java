@@ -38,49 +38,49 @@ public class TestModel {
 		//////////////////////////////////
 		// Test classe PawnModel
 		//////////////////////////////////
-
-		System.out.println("\nTest classe PawnModel");
-		PieceModel pieceModel1 = new PawnModel(new Coord('a', 7), PieceSquareColor.BLACK);
-		PieceModel pieceModel2 = new PawnModel(new Coord('b', 4), PieceSquareColor.WHITE);
-		PieceModel pieceModel3 = new PawnModel(new Coord('e', 7), PieceSquareColor.BLACK);
-		System.out.println("pieceModel1 = " + pieceModel1);	// [B[7,a]]
-							pieceModel1.move(new Coord('b', 6));
-		System.out.println("pieceModel1 = " + pieceModel1);	// [B[6,b]]
-		System.out.println("isMoveOk ('b',4) --> ('c',5) = " 
-							+ pieceModel2.isMoveOk(new Coord('c',5),false)); // true : depl. de 1 case sans prise
-		System.out.println("isMoveOk ('e',7) --> ('d',6) = " 
-							+ pieceModel3.isMoveOk(new Coord('d',6),false)); // true : depl. de 1 case sans prise
-							pieceModel2.move(new Coord('c', 5));
-							pieceModel3.move(new Coord('d', 6));
-		System.out.println("isMoveOk ('c',5) --> ('e',7) = " 
-							+ pieceModel2.isMoveOk(new Coord('e',7),true)); // true : depl. de 2 cases avec prise
-		System.out.println("isMoveOk ('c',5) --> ('d',6) = " 
-							+ pieceModel2.isMoveOk(new Coord('d',6),true)); // false : depl. de 1 case avec prise
-		System.out.println("isMoveOk ('c',5) --> ('b',6) = " 
-							+ pieceModel2.isMoveOk(new Coord('b',6),true)); // false : depl. de 1 case avec prise
-		System.out.println("isMoveOk ('c',5) --> ('e',7) = " 
-							+ pieceModel2.isMoveOk(new Coord('e',7),false)); // false : depl. de 2 cases sans prise
-		System.out.println("hasThisCoord ('c',5)  = " 
-							+ pieceModel2.hasThisCoord(new Coord('c',5))); 	 // true : ('c',5) = Coord de l'objet référencé par pieceModel2
+//
+//		System.out.println("\nTest classe PawnModel");
+//		PieceModel pieceModel1 = new PawnModel(new Coord('a', 7), PieceSquareColor.BLACK);
+//		PieceModel pieceModel2 = new PawnModel(new Coord('b', 4), PieceSquareColor.WHITE);
+//		PieceModel pieceModel3 = new PawnModel(new Coord('e', 7), PieceSquareColor.BLACK);
+//		System.out.println("pieceModel1 = " + pieceModel1);	// [B[7,a]]
+//							pieceModel1.move(new Coord('b', 6));
+//		System.out.println("pieceModel1 = " + pieceModel1);	// [B[6,b]]
+//		System.out.println("isMoveOk ('b',4) --> ('c',5) = " 
+//							+ pieceModel2.isMoveOk(new Coord('c',5),false)); // true : depl. de 1 case sans prise
+//		System.out.println("isMoveOk ('e',7) --> ('d',6) = " 
+//							+ pieceModel3.isMoveOk(new Coord('d',6),false)); // true : depl. de 1 case sans prise
+//							pieceModel2.move(new Coord('c', 5));
+//							pieceModel3.move(new Coord('d', 6));
+//		System.out.println("isMoveOk ('c',5) --> ('e',7) = " 
+//							+ pieceModel2.isMoveOk(new Coord('e',7),true)); // true : depl. de 2 cases avec prise
+//		System.out.println("isMoveOk ('c',5) --> ('d',6) = " 
+//							+ pieceModel2.isMoveOk(new Coord('d',6),true)); // false : depl. de 1 case avec prise
+//		System.out.println("isMoveOk ('c',5) --> ('b',6) = " 
+//							+ pieceModel2.isMoveOk(new Coord('b',6),true)); // false : depl. de 1 case avec prise
+//		System.out.println("isMoveOk ('c',5) --> ('e',7) = " 
+//							+ pieceModel2.isMoveOk(new Coord('e',7),false)); // false : depl. de 2 cases sans prise
+//		System.out.println("hasThisCoord ('c',5)  = " 
+//							+ pieceModel2.hasThisCoord(new Coord('c',5))); 	 // true : ('c',5) = Coord de l'objet référencé par pieceModel2
 //
 //
 //		//////////////////////////////////
 //		// Test classe ModelImplementor
 //		//////////////////////////////////
-//
-//		System.out.println("\nTest classe ModelImplementor");
-//		ModelImplementor modelImpl = new ModelImplementor();
-//		System.out.println("findPieceModel ('b',4) = " + modelImpl.findPiece(new Coord('b',4)));	// [W[4,b]]
-//		System.out.println("findPieceModel ('b',6) = " + modelImpl.findPiece(new Coord('b',6)));	// null
-//		System.out.println("getPieceColor('b',4) = " + modelImpl.getPieceColor(new Coord('b',4)));	// WHITE
-//		System.out.println("getPieceColor('b',6) = " + modelImpl.getPieceColor(new Coord('b',6)));	// null
-//		System.out.println("isPiecehere('b',4) = " + modelImpl.isPiecehere(new Coord('b',4)));	// true 
-//		System.out.println("isPiecehere('b',6) = " + modelImpl.isPiecehere(new Coord('b',6)));	// false 
-//		System.out.println("isMovePieceOk ('b',4) -> ('c',5) = " + 
-//							modelImpl.isMovePieceOk(new Coord('b',4), new Coord('c',5),false));	// true
-//		System.out.println("movePiece ('b',4) -> ('c',5) = " + 
-//							modelImpl.movePiece(new Coord('b',4), new Coord('c',5)));	// true : move OK
-//
+
+		System.out.println("\nTest classe ModelImplementor");
+		ModelImplementor modelImpl = new ModelImplementor();
+		System.out.println("findPieceModel ('b',4) = " + modelImpl.findPiece(new Coord('b',4)));	// [W[4,b]]
+		System.out.println("findPieceModel ('b',6) = " + modelImpl.findPiece(new Coord('b',6)));	// null
+		System.out.println("getPieceColor('b',4) = " + modelImpl.getPieceColor(new Coord('b',4)));	// WHITE
+		System.out.println("getPieceColor('b',6) = " + modelImpl.getPieceColor(new Coord('b',6)));	// null
+		System.out.println("isPiecehere('b',4) = " + modelImpl.isPiecehere(new Coord('b',4)));	// true 
+		System.out.println("isPiecehere('b',6) = " + modelImpl.isPiecehere(new Coord('b',6)));	// false 
+		System.out.println("isMovePieceOk ('b',4) -> ('c',5) = " + 
+							modelImpl.isMovePieceOk(new Coord('b',4), new Coord('c',5),false));	// true
+		System.out.println("movePiece ('b',4) -> ('c',5) = " + 
+							modelImpl.movePiece(new Coord('b',4), new Coord('c',5)));	// true : move OK
+
 //
 //		//////////////////////////////////
 //		// Test classe Model
