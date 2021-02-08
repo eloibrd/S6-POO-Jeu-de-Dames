@@ -19,7 +19,7 @@ import nutsAndBolts.PieceSquareColor;
  */
 public class ModelImplementor {
 
-	// la collection de pi�ces en jeu - m�lange noires et blanches
+	// la collection de piéces en jeu - mélange noires et blanches
 	private Collection<PieceModel> pieces ;	
 	
 	public ModelImplementor() {
