@@ -150,7 +150,6 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 
 			view.actionOnGui(dataToRefreshView);
 		}
-		// TODO atelier 2
 		// Inutile de reconstituer un objetOutputModelData<Integer>, aucun client ne le récupére en mode local
 		return outputControllerData;
 	}

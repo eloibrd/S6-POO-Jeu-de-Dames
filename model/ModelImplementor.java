@@ -1,6 +1,7 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -84,9 +85,37 @@ public class ModelImplementor {
 
 	
 	public List<Coord> getCoordsOnItinerary(Coord initCoord, Coord targetCoord) {
-		List<Coord> coordsOnItinerary = null;
+		List<Coord> coordsOnItinerary = new ArrayList<Coord>();
 		
-		// TODO Atelier 2
+		int subColonne = targetCoord.getColonne() - initCoord.getColonne();
+		int subLigne = targetCoord.getLigne() - initCoord.getLigne();
+		
+		if(subColonne>0) {
+			if(subLigne>0) {
+				// à droite en haut
+				for(int i = 1; i < subColonne-1; i++) {
+					coordsOnItinerary.add(new Coord((char)(initCoord.getColonne()+i),initCoord.getLigne()+i));
+				}
+			}else {
+				// à droite en bas
+				for(int i = 1; i < subColonne-1; i++) {
+					coordsOnItinerary.add(new Coord((char)(initCoord.getColonne()+i),initCoord.getLigne()-i));
+				}
+			}
+			
+		}else {
+			if(subLigne>0) {
+				// à gauche en haut
+				for(int i = 1; i < Math.abs(subColonne)-1; i++) {
+					coordsOnItinerary.add(new Coord((char)(initCoord.getColonne()-i),initCoord.getLigne()+i));
+				}
+			}else {
+				// à gauche en bas
+				for(int i = 1; i < Math.abs(subColonne)-1; i++) {
+					coordsOnItinerary.add(new Coord((char)(initCoord.getColonne()-i),initCoord.getLigne()-i));
+				}
+			}
+		}
 		
 		return coordsOnItinerary;
 	}

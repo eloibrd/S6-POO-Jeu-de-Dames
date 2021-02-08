@@ -96,7 +96,21 @@ public class PawnModel implements PieceModel{
 
 		List<Coord> coordsOnItinery = new LinkedList<Coord>(); 
 
-		// TODO Atelier 2
+		int subColonne = targetCoord.getColonne() - this.coord.getColonne();
+		
+		if(this.getPieceColor()== PieceSquareColor.BLACK) {
+			if(subColonne>0) {
+				coordsOnItinery.add(new Coord((char)(this.getColonne()+1),this.getLigne()-1));
+			}else{
+				coordsOnItinery.add(new Coord((char)(this.getColonne()-1),this.getLigne()-1));
+			}
+		}else {
+			if(subColonne>0) {
+				coordsOnItinery.add(new Coord((char)(this.getColonne()+1),this.getLigne()+1));
+			}else{
+				coordsOnItinery.add(new Coord((char)(this.getColonne()-1),this.getLigne()+1));
+			}
+		}
 
 		return coordsOnItinery;
 	}

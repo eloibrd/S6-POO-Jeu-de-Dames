@@ -133,11 +133,14 @@ public class Model implements BoardGame<Coord> {
 	 * ou pas de piéce é prendre
 	 */
 	private boolean isThereMaxOnePieceOnItinerary(Coord toMovePieceCoord, Coord targetSquareCoord) {
-		boolean isThereMaxOnePieceOnItinerary = true; // TODO Atelier 2 - initialiser é false
-
-		// TODO Atelier 2
-
-		return isThereMaxOnePieceOnItinerary;
+		boolean onePiece= false;
+		List<Coord> pieceList = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
+		if(pieceList.size()==1 && this.implementor.getPieceColor(pieceList.get(0)) != this.currentGamerColor){
+			onePiece=true;
+		}else if(pieceList.size()==0) {
+			onePiece=true;
+		}
+		return onePiece;
 	}
 
 	/**
@@ -147,9 +150,9 @@ public class Model implements BoardGame<Coord> {
 	 */
 	private Coord getToCapturePieceCoord(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		Coord toCapturePieceCoord = null;
-
-		// TODO Atelier 2
-
+		if(this.implementor.getCoordsOnItinerary(toMovePieceCoord,targetSquareCoord).size()==1) {
+			toCapturePieceCoord=this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord).get(0);
+		}
 		return toCapturePieceCoord;
 	}
 
