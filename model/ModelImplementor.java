@@ -67,13 +67,16 @@ public class ModelImplementor {
 
 
 	public boolean movePiece(Coord initCoord, Coord targetCoord) {
-
-		boolean isMovePieceDone = false;
-		boolean isPieceToTake = (initCoord.getColonne() == targetCoord.getColonne()+2 || initCoord.getColonne() == targetCoord.getColonne()-2) && (initCoord.getLigne() == targetCoord.getLigne()-2 || initCoord.getLigne() == targetCoord.getLigne()+2);
-		if(isMovePieceOk(initCoord, targetCoord, isPieceToTake)) {
-			findPiece(initCoord).move(targetCoord);
-			isMovePieceDone = true;
-		}
+//		boolean isMovePieceDone = false;
+//		boolean isPieceToTake = (initCoord.getColonne() == targetCoord.getColonne()+2 || initCoord.getColonne() == targetCoord.getColonne()-2) && (initCoord.getLigne() == targetCoord.getLigne()-2 || initCoord.getLigne() == targetCoord.getLigne()+2);
+//		if(isMovePieceOk(initCoord, targetCoord, isPieceToTake)) {
+//			findPiece(initCoord).move(targetCoord);
+//			isMovePieceDone = true;
+//		}
+//		return isMovePieceDone;
+		findPiece(initCoord).move(targetCoord);
+		boolean isMovePieceDone = true;
+		
 		return isMovePieceDone;
 	}
 
@@ -88,41 +91,41 @@ public class ModelImplementor {
 
 	
 	public List<Coord> getCoordsOnItinerary(Coord initCoord, Coord targetCoord) {
-		List<Coord> coordsOnItinerary = new ArrayList<Coord>();
-		List<Integer> lineList = new ArrayList<Integer>();
-		List<Character> colList = new ArrayList<Character>();
-		if(initCoord.getLigne()<targetCoord.getLigne()) {
-			int line = initCoord.getLigne()+1;
-			while(line<targetCoord.getLigne()) {
-				lineList.add(line);
-				line++;
-			}
-		}else {
-			int line = targetCoord.getLigne()+1;
-			while(line<initCoord.getLigne()) {
-				lineList.add(line);
-				line++;
-			}
-		}
-		
-		if(initCoord.getColonne()<targetCoord.getColonne()) {
-			char col = (char) (initCoord.getColonne()+1);
-			while(col<targetCoord.getColonne()) {
-				colList.add(col);
-				col++;
-			}
-		}else {
-			char col = (char) (targetCoord.getColonne()+1);
-			while(col<initCoord.getColonne()) {
-				colList.add(col);
-				col++;
-			}
-		}
-		
-		for(int i =0; i<lineList.size();i++) {
-			coordsOnItinerary.add(new Coord(colList.get(0),lineList.get(0)));
-		}
-		return coordsOnItinerary;
+//		List<Coord> coordsOnItinerary = new ArrayList<Coord>();
+//		List<Integer> lineList = new ArrayList<Integer>();
+//		List<Character> colList = new ArrayList<Character>();
+//		if(initCoord.getLigne()<targetCoord.getLigne()) {
+//			int line = initCoord.getLigne()+1;
+//			while(line<targetCoord.getLigne()) {
+//				lineList.add(line);
+//				line++;
+//			}
+//		}else {
+//			int line = targetCoord.getLigne()+1;
+//			while(line<initCoord.getLigne()) {
+//				lineList.add(line);
+//				line++;
+//			}
+//		}
+//		
+//		if(initCoord.getColonne()<targetCoord.getColonne()) {
+//			char col = (char) (initCoord.getColonne()+1);
+//			while(col<targetCoord.getColonne()) {
+//				colList.add(col);
+//				col++;
+//			}
+//		}else {
+//			char col = (char) (targetCoord.getColonne()+1);
+//			while(col<initCoord.getColonne()) {
+//				colList.add(col);
+//				col++;
+//			}
+//		}
+//		
+//		for(int i =0; i<lineList.size();i++) {
+//			coordsOnItinerary.add(new Coord(colList.get(0),lineList.get(0)));
+//		}
+		return findPiece(initCoord).getCoordsOnItinerary(targetCoord);
 	}
 
 	

@@ -81,14 +81,14 @@ public class Model implements BoardGame<Coord> {
 					this.remove(toCapturePieceCoord);
 
 					// promotion éventuelle de la piéce aprés déplacement 
-//					if(this.implementor.findPiece(targetSquareCoord) instanceof Promotable) {
-//							if(((PawnModel)this.implementor.findPiece(targetSquareCoord)).isPromotable()) {
-//								PieceSquareColor color = this.implementor.findPiece(targetSquareCoord).getPieceColor();
-//								this.implementor.removePiece(targetSquareCoord);
-//								QueenModel queen = new QueenModel(targetSquareCoord,color);
-//								this.implementor.addPiece(queen);
-//							}
-//					}
+					if(this.implementor.findPiece(targetSquareCoord) instanceof Promotable) {
+							if(((PawnModel)this.implementor.findPiece(targetSquareCoord)).isPromotable()) {
+								PieceSquareColor color = this.implementor.findPiece(targetSquareCoord).getPieceColor();
+								this.implementor.removePiece(targetSquareCoord);
+								QueenModel queen = new QueenModel(targetSquareCoord,color);
+								this.implementor.addPiece(queen);
+							}
+					}
 
 					// S'il n'y a pas eu de prise
 					// ou si une rafle n'est pas possible alors changement de joueur 
@@ -158,20 +158,20 @@ public class Model implements BoardGame<Coord> {
 	/**
 	 * @param toMovePieceCoord
 	 * @param targetSquareCoord
-	 * @return les coord de la piéce é prendre, null sinon
+	 * @return les coord de la piéce à prendre, null sinon
 	 */
 	private Coord getToCapturePieceCoord(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		Coord toCapturePieceCoord = null;
 		if(isThereMaxOnePieceOnItinerary(toMovePieceCoord,targetSquareCoord)) {
-			if(!this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord).isEmpty()) {
+			List<Coord> coordList = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
+			if(!coordList.isEmpty()) {
 				List<Coord> pieceList = new ArrayList<Coord>();
-				List<Coord> coordList = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
 				for(Coord coord : coordList) {
 					if(this.implementor.isPiecehere(coord)) {
 						pieceList.add(coord);
 					}
 				}
-				if(pieceList.size()==1) {
+				if(pieceList.size()!=0) {
 					return pieceList.get(0);
 				}
 			}

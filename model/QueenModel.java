@@ -19,40 +19,43 @@ public class QueenModel extends AbstractPieceModel {
 	
 	@Override
 	public List<Coord> getCoordsOnItinerary(Coord targetCoord) {
-		Coord initCoord = new Coord(this.getColonne(),this.getLigne()) ;
 		List<Coord> coordsOnItinerary = new ArrayList<Coord>();
-		List<Integer> lineList = new ArrayList<Integer>();
-		List<Character> colList = new ArrayList<Character>();
-		if(initCoord.getLigne()<targetCoord.getLigne()) {
-			int line = initCoord.getLigne()+1;
-			while(line<targetCoord.getLigne()) {
-				lineList.add(line);
-				line++;
+		int initLine = this.getLigne();
+		char initCol = this.getColonne();
+		if(this.getLigne()>targetCoord.getLigne()) {
+			//System.out.println("InitLine>TargetLine");
+			if(this.getColonne()>targetCoord.getColonne()) {
+				while(initLine>targetCoord.getLigne()) {
+					initLine = initLine-1;
+					initCol = (char)(initCol-1);
+					coordsOnItinerary.add(new Coord(initCol,initLine));
+				}
+			}else {
+				while(initLine>targetCoord.getLigne()) {
+					initLine = initLine-1;
+					initCol = (char)(initCol+1);
+					coordsOnItinerary.add(new Coord(initCol,initLine));
+				}
 			}
 		}else {
-			int line = targetCoord.getLigne()+1;
-			while(line<initCoord.getLigne()) {
-				lineList.add(line);
-				line++;
+			//System.out.println("InitLine<TargetLine");
+			if(this.getColonne()>targetCoord.getColonne()) {
+				while(initLine<targetCoord.getLigne()) {
+					initLine = initLine+1;
+					initCol = (char)(initCol-1);
+					coordsOnItinerary.add(new Coord(initCol,initLine));
+				}
+			}else {
+				while(initLine<targetCoord.getLigne()) {
+					initLine = initLine+1;
+					initCol = (char)(initCol+1);
+					coordsOnItinerary.add(new Coord(initCol,initLine));
+				}
 			}
 		}
-		
-		if(initCoord.getColonne()<targetCoord.getColonne()) {
-			char col = (char) (initCoord.getColonne()+1);
-			while(col<targetCoord.getColonne()) {
-				colList.add(col);
-				col++;
-			}
-		}else {
-			char col = (char) (targetCoord.getColonne()+1);
-			while(col<initCoord.getColonne()) {
-				colList.add(col);
-				col++;
-			}
-		}
-		
-		for(int i =0; i<lineList.size();i++) {
-			coordsOnItinerary.add(new Coord(colList.get(0),lineList.get(0)));
+
+		for(Coord crd : coordsOnItinerary) {
+			System.out.println("COORD ITI"+crd.toString());
 		}
 		return coordsOnItinerary;
 	}
@@ -106,15 +109,13 @@ public class QueenModel extends AbstractPieceModel {
 					coord = new Coord(col,line);
 					listCoord.add(coord);
 				}
-				for(Coord crd : listCoord) {
-					System.out.println(crd.toString());
-				}
+//				for(Coord crd : listCoord) {
+//					System.out.println(crd.toString());
+//				}
 				if(listCoord.contains(targetCoord)) {
 					return true;
 				}
-//			}else {
-//				
-//			}
+			//}
 		}
 		
 		return ret;
