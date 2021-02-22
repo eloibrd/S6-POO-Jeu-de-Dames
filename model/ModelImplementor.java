@@ -151,36 +151,49 @@ public class ModelImplementor {
 	 * 
 	 */
 	public String toString() {
-
-
 		String st = "";
+		int count = 0;
+
+		/*// Affichage par ordre d'insertion
+		for(PieceModel piece : this.pieces) {
+			PieceSquareColor color = piece.getPieceColor();
+			String stColor = (PieceSquareColor.WHITE.equals(color) ? "B" : "N" );
+			st += "[" + stColor + "[" + piece.getLigne() + "," + piece.getColonne() + "]]  ";
+			if(count<4){
+				count++;
+			}else{
+				st+="\n";
+				count=0;
+			}
+		}*/
+
 		String[][] damier = new String[ModelConfig.LENGTH][ModelConfig.LENGTH];
 
-//		// cr�ation d'un tableau 2D avec les noms des pi�ces � partir de la liste de pi�ces
-//		for(PieceModel piece : this.pieces) {
-//
-//			PieceSquareColor color = piece.getPieceColor();
-//			String stColor = (PieceSquareColor.WHITE.equals(color) ? "--B--" : "--N--" );
-//
-//			int col = piece.getColonne() -'a';
-//			int lig = piece.getLigne() -1;
-//			damier[lig][col ] = stColor ;
-//		}
+		// cr�ation d'un tableau 2D avec les noms des pi�ces � partir de la liste de pi�ces
+		for(PieceModel piece : this.pieces) {
+			PieceSquareColor color = piece.getPieceColor();
+			String stColor = (PieceSquareColor.WHITE.equals(color) ? "B" : "N" );
 
-		// Affichage du tableau formatt�
-		st = "     a      b      c      d      e      f      g      h      i      j\n";
+			int col = piece.getColonne() -'a';
+			int lig = piece.getLigne()-1;
+			damier[lig][col] = stColor ;
+		}
+
+		// Affichage du tableau ordre cases croissant
+
 		for ( int lig = 9; lig >=0 ; lig--) {
-			st += (lig+1) + "  ";
-			for ( int col = 0; col <= 9; col++) {					 
-				String stColor = damier[lig][col];				
-				if (stColor != null) {						
-					st += stColor + "  ";	
-				} 
-				else {
-					st += "-----  ";
+			for ( int col = 0; col <= 9; col++) {
+				String stColor = damier[lig][col];
+				if (stColor != null) {
+					st += "[" + stColor + "[" + (lig+1) + "," + (char) (col + 'a') + "]]  ";
+					if(count<4){
+						count++;
+					}else{
+						st+="\n";
+						count=0;
+					}
 				}
 			}
-			st +="\n";
 		}
 		
 		return "\nDamier du model \n" + st;	
