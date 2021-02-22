@@ -86,37 +86,39 @@ public class ModelImplementor {
 	
 	public List<Coord> getCoordsOnItinerary(Coord initCoord, Coord targetCoord) {
 		List<Coord> coordsOnItinerary = new ArrayList<Coord>();
-		
-		int subColonne = targetCoord.getColonne() - initCoord.getColonne();
-		int subLigne = targetCoord.getLigne() - initCoord.getLigne();
-		
-		if(subColonne>0) {
-			if(subLigne>0) {
-				// à droite en haut
-				for(int i = 1; i < subColonne-1; i++) {
-					coordsOnItinerary.add(new Coord((char)(initCoord.getColonne()+i),initCoord.getLigne()+i));
-				}
-			}else {
-				// à droite en bas
-				for(int i = 1; i < subColonne-1; i++) {
-					coordsOnItinerary.add(new Coord((char)(initCoord.getColonne()+i),initCoord.getLigne()-i));
-				}
+		List<Integer> lineList = new ArrayList<Integer>();
+		List<Character> colList = new ArrayList<Character>();
+		if(initCoord.getLigne()<targetCoord.getLigne()) {
+			int line = initCoord.getLigne()+1;
+			while(line<targetCoord.getLigne()) {
+				lineList.add(line);
+				line++;
 			}
-			
 		}else {
-			if(subLigne>0) {
-				// à gauche en haut
-				for(int i = 1; i < Math.abs(subColonne)-1; i++) {
-					coordsOnItinerary.add(new Coord((char)(initCoord.getColonne()-i),initCoord.getLigne()+i));
-				}
-			}else {
-				// à gauche en bas
-				for(int i = 1; i < Math.abs(subColonne)-1; i++) {
-					coordsOnItinerary.add(new Coord((char)(initCoord.getColonne()-i),initCoord.getLigne()-i));
-				}
+			int line = targetCoord.getLigne()+1;
+			while(line<initCoord.getLigne()) {
+				lineList.add(line);
+				line++;
 			}
 		}
 		
+		if(initCoord.getColonne()<targetCoord.getColonne()) {
+			char col = (char) (initCoord.getColonne()+1);
+			while(col<targetCoord.getColonne()) {
+				colList.add(col);
+				col++;
+			}
+		}else {
+			char col = (char) (targetCoord.getColonne()+1);
+			while(col<initCoord.getColonne()) {
+				colList.add(col);
+				col++;
+			}
+		}
+		
+		for(int i =0; i<lineList.size();i++) {
+			coordsOnItinerary.add(new Coord(colList.get(0),lineList.get(0)));
+		}
 		return coordsOnItinerary;
 	}
 

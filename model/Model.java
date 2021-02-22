@@ -1,6 +1,7 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import controller.OutputModelData;
@@ -129,12 +130,18 @@ public class Model implements BoardGame<Coord> {
 	/**
 	 * @param toMovePieceCoord
 	 * @param targetSquareCoord
-	 * @return true s'il n'existe qu'1 seule piéce é prendre d'une autre couleur sur la trajectoire
+	 * @return true s'il n'existe qu'1 seule piéce à prendre d'une autre couleur sur la trajectoire
 	 * ou pas de piéce é prendre
 	 */
 	private boolean isThereMaxOnePieceOnItinerary(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		boolean onePiece= false;
-		List<Coord> pieceList = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
+		List<Coord> coordList = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
+		List<Coord> pieceList = new ArrayList<Coord>();
+		for(Coord coord : coordList) {
+			if(this.implementor.isPiecehere(coord)) {
+				pieceList.add(coord);
+			}
+		}
 		if(pieceList.size()==1 && this.implementor.getPieceColor(pieceList.get(0)) != this.currentGamerColor){
 			onePiece=true;
 		}else if(pieceList.size()==0) {

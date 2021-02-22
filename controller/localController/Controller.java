@@ -142,7 +142,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 		Coord targetCoord = transformIndexToCoord(targetSquareIndex);
 		Coord pieceToMoveCoord = transformIndexToCoord(toMovePieceIndex);
 		OutputModelData<Coord> outPutCoordData = model.moveCapturePromote(pieceToMoveCoord, targetCoord);
-		if(outPutCoordData.isMoveDone) {
+		if(outPutCoordData.isMoveDone ) {
 			int capturedPieceIndex = transformCoordToIndex(outPutCoordData.capturedPieceCoord);
 			int promotedPieceIndex = transformCoordToIndex(outPutCoordData.promotedPieceCoord);
 			
