@@ -86,6 +86,8 @@ public class Model implements BoardGame<Coord> {
 								PieceSquareColor color = this.implementor.findPiece(targetSquareCoord).getPieceColor();
 								this.implementor.removePiece(targetSquareCoord);
 								QueenModel queen = new QueenModel(targetSquareCoord,color);
+								toPromotePieceCoord=targetSquareCoord;
+								toPromotePieceColor=color;
 								this.implementor.addPiece(queen);
 							}
 					}

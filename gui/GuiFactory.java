@@ -90,9 +90,9 @@ public class GuiFactory {
 	 * la promotion consiste � changer l'image de la PieceGui
 	 */
 	public static void PromotePiece(ImageView piece, PieceSquareColor promotedPieceColor) {
-
-		// ToDo Atelier 3
-		
+		System.out.println("PROMOTING PIECE "+promotedPieceColor);
+		Image image = GuiFactory.createImage(promotedPieceColor, false);	
+		piece.setImage(image);
 	}
 	
 	/**
