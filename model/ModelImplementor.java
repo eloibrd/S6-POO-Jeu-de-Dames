@@ -155,6 +155,7 @@ public class ModelImplementor {
 		int count = 0;
 
 		/*// Affichage par ordre d'insertion
+
 		for(PieceModel piece : this.pieces) {
 			PieceSquareColor color = piece.getPieceColor();
 			String stColor = (PieceSquareColor.WHITE.equals(color) ? "B" : "N" );
