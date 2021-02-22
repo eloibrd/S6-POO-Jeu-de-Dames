@@ -62,16 +62,61 @@ public class QueenModel extends AbstractPieceModel {
 	@Override
 	public boolean isMoveOk(Coord targetCoord, boolean isPieceToCapture) {
 		boolean ret = false;
-		Coord initCoord = new Coord(this.getColonne(),this.getLigne());
+		ArrayList<Coord> listCoord = new ArrayList<Coord>();
 		if(Coord.coordonnees_valides(targetCoord)){
-			if(!isPieceToCapture) {
+			//if(!isPieceToCapture) {
+				//------------------------HAUT DROITE---------------------------------
+				int line = this.getLigne();
+				char col = this.getColonne();
+				Coord coord = new Coord(this.getColonne(),this.getLigne());
 				
-			}else {
-				
-			}
-			
+				while(Coord.coordonnees_valides(coord)) {
+					line++;
+					col++;
+					coord = new Coord(col,line);
+					listCoord.add(coord);
+				}
+				//--------------------------HAUT GAUCHE--------------------------------
+				line = this.getLigne();
+				col = this.getColonne();
+				coord = new Coord(this.getColonne(),this.getLigne());
+				while(Coord.coordonnees_valides(coord)) {
+					line++;
+					col--;
+					coord = new Coord(col,line);
+					listCoord.add(coord);
+				}
+				//--------------------------BAS  GAUCHE--------------------------------
+				line = this.getLigne();
+				col = this.getColonne();
+				coord = new Coord(this.getColonne(),this.getLigne());
+				while(Coord.coordonnees_valides(coord)) {
+					line--;
+					col--;
+					coord = new Coord(col,line);
+					listCoord.add(coord);
+				}
+				//--------------------------BAS  DROITE--------------------------------
+				line = this.getLigne();
+				col = this.getColonne();
+				coord = new Coord(this.getColonne(),this.getLigne());
+				while(Coord.coordonnees_valides(coord)) {
+					line--;
+					col++;
+					coord = new Coord(col,line);
+					listCoord.add(coord);
+				}
+				for(Coord crd : listCoord) {
+					System.out.println(crd.toString());
+				}
+				if(listCoord.contains(targetCoord)) {
+					return true;
+				}
+//			}else {
+//				
+//			}
 		}
-
+		
 		return ret;
 	}
 

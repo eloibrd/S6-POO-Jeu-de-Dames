@@ -70,7 +70,7 @@ public class Model implements BoardGame<Coord> {
 
 				// si le déplacement est légal (en diagonale selon algo pion ou dame)
 				boolean isPieceToCapture = toCapturePieceCoord != null;
-				//System.out.println("IS PIECE TO CAPTURE:"+isPieceToCapture);
+				System.out.println("IS PIECE TO CAPTURE:"+isPieceToCapture);
 				if (this.isMovePiecePossible(toMovePieceCoord, targetSquareCoord, isPieceToCapture)) {
 
 					// déplacement effectif de la piéce
