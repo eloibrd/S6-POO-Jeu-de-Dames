@@ -123,7 +123,6 @@ public class ModelImplementor {
 		return coordsOnItinerary;
 	}
 
-	
 	/**
 	 * @param coord
 	 * @return la pi�ce qui se trouve aux coordonn�es indiqu�es
@@ -139,8 +138,6 @@ public class ModelImplementor {
 			return pieceResult;
 	}
 
-
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 * 
@@ -152,9 +149,12 @@ public class ModelImplementor {
 		String st = "";
 		int count = 0;
 
-		// Affichage par ordre d'insertion
+		//Tri de la liste
+		List<PieceModel> listPiece = new ArrayList<PieceModel>(this.pieces);
+		Collections.sort(listPiece, Collections.reverseOrder());
 
-		Iterator<PieceModel> pieceIterator = this.pieces.iterator();
+		// Affichage par ordre d'insertion
+		ListIterator<PieceModel> pieceIterator = listPiece.listIterator();
 		while(pieceIterator.hasNext()){
 			PieceModel piece = pieceIterator.next();
 			PieceSquareColor color = piece.getPieceColor();

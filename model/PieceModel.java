@@ -1,11 +1,12 @@
 package model;
 
 
+import java.util.Comparator;
 import java.util.List;
 
 import nutsAndBolts.PieceSquareColor;
 
-public interface PieceModel {
+public interface PieceModel extends Comparable<PieceModel>{
 	
 	
 	/**
@@ -46,6 +47,7 @@ public interface PieceModel {
 	 */
 	public List<Coord> getCoordsOnItinerary(Coord targetCoord);
 
-	
+	@Override
+	public int compareTo(PieceModel p1);
 }
 

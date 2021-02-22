@@ -16,7 +16,18 @@ public class QueenModel extends AbstractPieceModel {
 	public QueenModel(Coord coord, PieceSquareColor pieceColor) {
 		super(coord,pieceColor);
 	}
-	
+
+	@Override
+	public int compareTo(PieceModel p1){
+		if(p1.getLigne() < this.getLigne()){
+			return 1;
+		}else if(p1.getLigne() == this.getLigne()){
+			return 0;
+		}else{
+			return -1;
+		}
+	}
+
 	@Override
 	public List<Coord> getCoordsOnItinerary(Coord targetCoord) {
 		Coord initCoord = new Coord(this.getColonne(),this.getLigne()) ;

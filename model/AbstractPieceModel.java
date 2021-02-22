@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Comparator;
 import java.util.List;
 
 import nutsAndBolts.PieceSquareColor;
@@ -55,7 +56,4 @@ public abstract class AbstractPieceModel implements PieceModel {
 	public String toString() {
 		return " ["+getPieceColor().toString().charAt(0) + this.coord  + "]";
 	}
-
-	
-
 }

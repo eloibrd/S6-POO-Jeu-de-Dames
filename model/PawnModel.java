@@ -11,7 +11,18 @@ public class PawnModel extends AbstractPieceModel implements Promotable{
 	
 	public PawnModel(Coord coord, PieceSquareColor pieceColor) {
 		super(coord,pieceColor);
-	}	
+	}
+
+	@Override
+	public int compareTo(PieceModel p1){
+		if(p1.getLigne() < this.getLigne()){
+			return 1;
+		}else if(p1.getLigne() == this.getLigne()){
+			return 0;
+		}else{
+			return -1;
+		}
+	}
 
 	@Override
 	public boolean isMoveOk(Coord targetCoord, boolean isPieceToCapture) {
