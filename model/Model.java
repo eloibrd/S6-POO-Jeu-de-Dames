@@ -70,6 +70,7 @@ public class Model implements BoardGame<Coord> {
 
 				// si le déplacement est légal (en diagonale selon algo pion ou dame)
 				boolean isPieceToCapture = toCapturePieceCoord != null;
+				//System.out.println("IS PIECE TO CAPTURE:"+isPieceToCapture);
 				if (this.isMovePiecePossible(toMovePieceCoord, targetSquareCoord, isPieceToCapture)) {
 
 					// déplacement effectif de la piéce
@@ -80,10 +81,14 @@ public class Model implements BoardGame<Coord> {
 					this.remove(toCapturePieceCoord);
 
 					// promotion éventuelle de la piéce aprés déplacement 
-					if (true) {	// TODO : Test é changer atelier 3
-
-						// TODO atelier 3
-					}
+//					if(this.implementor.findPiece(targetSquareCoord) instanceof Promotable) {
+//							if(((PawnModel)this.implementor.findPiece(targetSquareCoord)).isPromotable()) {
+//								PieceSquareColor color = this.implementor.findPiece(targetSquareCoord).getPieceColor();
+//								this.implementor.removePiece(targetSquareCoord);
+//								QueenModel queen = new QueenModel(targetSquareCoord,color);
+//								this.implementor.addPiece(queen);
+//							}
+//					}
 
 					// S'il n'y a pas eu de prise
 					// ou si une rafle n'est pas possible alors changement de joueur 
@@ -157,8 +162,19 @@ public class Model implements BoardGame<Coord> {
 	 */
 	private Coord getToCapturePieceCoord(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		Coord toCapturePieceCoord = null;
-		if(this.implementor.getCoordsOnItinerary(toMovePieceCoord,targetSquareCoord).size()==1) {
-			toCapturePieceCoord=this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord).get(0);
+		if(isThereMaxOnePieceOnItinerary(toMovePieceCoord,targetSquareCoord)) {
+			if(!this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord).isEmpty()) {
+				List<Coord> pieceList = new ArrayList<Coord>();
+				List<Coord> coordList = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
+				for(Coord coord : coordList) {
+					if(this.implementor.isPiecehere(coord)) {
+						pieceList.add(coord);
+					}
+				}
+				if(pieceList.size()==1) {
+					return pieceList.get(0);
+				}
+			}
 		}
 		return toCapturePieceCoord;
 	}

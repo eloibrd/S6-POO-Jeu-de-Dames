@@ -40,7 +40,7 @@ public class Coord implements Comparable<Coord>{
 	 */
 	public static boolean coordonnees_valides(Coord coord){
 		boolean ret = false;
-		if('a' <= coord.getColonne()  && coord.getColonne()<'a'+MAX && 1 < coord.getLigne() && coord.getLigne() <=MAX ) {
+		if('a' <= coord.getColonne()  && coord.getColonne()<'a'+MAX && 1 <= coord.getLigne() && coord.getLigne() <=MAX ) {
 			ret = true;
 		}
 		

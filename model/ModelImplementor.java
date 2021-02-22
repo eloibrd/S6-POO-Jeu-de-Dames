@@ -25,7 +25,6 @@ public class ModelImplementor {
 	
 	public ModelImplementor() {
 		super();
-
 		pieces = ModelFactory.createPieceModelCollection();
 	}
 
@@ -81,6 +80,10 @@ public class ModelImplementor {
 	public void removePiece(Coord pieceToTakeCoord) {		
 		this.pieces.remove(findPiece(pieceToTakeCoord));		
 		
+	}
+	
+	public void addPiece(PieceModel piece) {
+		this.pieces.add(piece);
 	}
 
 	
