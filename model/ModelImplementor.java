@@ -1,9 +1,7 @@
 package model;
 
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import nutsAndBolts.PieceSquareColor;
 
@@ -154,9 +152,11 @@ public class ModelImplementor {
 		String st = "";
 		int count = 0;
 
-		/*// Affichage par ordre d'insertion
+		// Affichage par ordre d'insertion
 
-		for(PieceModel piece : this.pieces) {
+		Iterator<PieceModel> pieceIterator = this.pieces.iterator();
+		while(pieceIterator.hasNext()){
+			PieceModel piece = pieceIterator.next();
 			PieceSquareColor color = piece.getPieceColor();
 			String stColor = (PieceSquareColor.WHITE.equals(color) ? "B" : "N" );
 			st += "[" + stColor + "[" + piece.getLigne() + "," + piece.getColonne() + "]]  ";
@@ -166,9 +166,9 @@ public class ModelImplementor {
 				st+="\n";
 				count=0;
 			}
-		}*/
+		}
 
-		String[][] damier = new String[ModelConfig.LENGTH][ModelConfig.LENGTH];
+		/*String[][] damier = new String[ModelConfig.LENGTH][ModelConfig.LENGTH];
 
 		// cr�ation d'un tableau 2D avec les noms des pi�ces � partir de la liste de pi�ces
 		for(PieceModel piece : this.pieces) {
@@ -195,7 +195,7 @@ public class ModelImplementor {
 					}
 				}
 			}
-		}
+		}*/
 		
 		return "\nDamier du model \n" + st;	
 	}
