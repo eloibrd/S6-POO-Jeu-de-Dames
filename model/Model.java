@@ -71,6 +71,7 @@ public class Model implements BoardGame<Coord> {
 				// si le déplacement est légal (en diagonale selon algo pion ou dame)
 				boolean isPieceToCapture = toCapturePieceCoord != null;
 				System.out.println("IS PIECE TO CAPTURE:"+isPieceToCapture);
+				System.out.println("IS MOVE PIECE POSSIBLE:"+this.isMovePiecePossible(toMovePieceCoord, targetSquareCoord, isPieceToCapture));
 				if (this.isMovePiecePossible(toMovePieceCoord, targetSquareCoord, isPieceToCapture)) {
 
 					// déplacement effectif de la piéce
@@ -163,21 +164,43 @@ public class Model implements BoardGame<Coord> {
 	 * @return les coord de la piéce à prendre, null sinon
 	 */
 	private Coord getToCapturePieceCoord(Coord toMovePieceCoord, Coord targetSquareCoord) {
+//		Coord toCapturePieceCoord = null;
+//		if(isThereMaxOnePieceOnItinerary(toMovePieceCoord,targetSquareCoord)) {
+//			List<Coord> coordList = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
+//			if(!coordList.isEmpty()) {
+//				List<Coord> pieceList = new ArrayList<Coord>();
+//				for(Coord coord : coordList) {
+//					System.out.println("COORD:"+coord);
+//					if(this.implementor.isPiecehere(coord)) {
+//						pieceList.add(coord);
+//					}
+//				}
+//				if(pieceList.size()!=0) {
+//					return pieceList.get(0);
+//				}
+//			}
+//		}
+//		return toCapturePieceCoord;
 		Coord toCapturePieceCoord = null;
-		if(isThereMaxOnePieceOnItinerary(toMovePieceCoord,targetSquareCoord)) {
-			List<Coord> coordList = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
-			if(!coordList.isEmpty()) {
-				List<Coord> pieceList = new ArrayList<Coord>();
-				for(Coord coord : coordList) {
-					if(this.implementor.isPiecehere(coord)) {
-						pieceList.add(coord);
-					}
-				}
-				if(pieceList.size()!=0) {
-					return pieceList.get(0);
+		List<Coord> coordsOnItinerary = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
+
+		if (coordsOnItinerary != null) { 
+			int count = 0;
+			Coord potentialToCapturePieceCoord = null;
+			for (Coord coordOnItinerary : coordsOnItinerary) {
+				if (this.implementor.isPiecehere(coordOnItinerary)) {
+					count++;
+					potentialToCapturePieceCoord = coordOnItinerary;
 				}
 			}
+			// Il n'existe qu'1 seule pièce à prendre d'une autre couleur sur la trajectoire
+			if (count == 0 
+					|| (count == 1 && this.currentGamerColor != 
+					this.implementor.getPieceColor(potentialToCapturePieceCoord))) {
+				toCapturePieceCoord = potentialToCapturePieceCoord;
+			}
 		}
+
 		return toCapturePieceCoord;
 	}
 

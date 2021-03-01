@@ -1,6 +1,7 @@
 package model;
 
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,13 +34,13 @@ public class PawnModel extends AbstractPieceModel implements Promotable{
 				}
 			}else {
 				if(this.getPieceColor() == PieceSquareColor.BLACK ) {
-					if((targetCoord.getColonne() == this.getColonne()+2 || targetCoord.getColonne() == this.getColonne()-2) && targetCoord.getLigne() == this.getLigne()-2) {
+					if((targetCoord.getColonne() == this.getColonne()+2 || targetCoord.getColonne() == this.getColonne()-2) && (targetCoord.getLigne() == this.getLigne()-2 || targetCoord.getLigne() == this.getLigne()+2)) {
 						return true;
 					}else {
 						return false;
 					}
 				}else {
-					if((targetCoord.getColonne() == this.getColonne()+2 || targetCoord.getColonne() == this.getColonne()-2) && targetCoord.getLigne() == this.getLigne()+2) {
+					if((targetCoord.getColonne() == this.getColonne()+2 || targetCoord.getColonne() == this.getColonne()-2) && (targetCoord.getLigne() == this.getLigne()+2 || targetCoord.getLigne() == this.getLigne()-2)) {
 						return true;
 					}else {
 						return false;
@@ -48,31 +49,29 @@ public class PawnModel extends AbstractPieceModel implements Promotable{
 			}
 			
 		}
-		
-
 		return ret;
 	}
 
 	@Override
 	public List<Coord> getCoordsOnItinerary(Coord targetCoord) {
-		List<Coord> coordsOnItinery = new LinkedList<Coord>(); 
 
-		int subColonne = targetCoord.getColonne() - super.getColonne();
-		
-		if(this.getPieceColor()== PieceSquareColor.BLACK) {
-			if(subColonne>0) {
-				coordsOnItinery.add(new Coord((char)(this.getColonne()+1),this.getLigne()-1));
-			}else{
-				coordsOnItinery.add(new Coord((char)(this.getColonne()-1),this.getLigne()-1));
-			}
-		}else {
-			if(subColonne>0) {
-				coordsOnItinery.add(new Coord((char)(this.getColonne()+1),this.getLigne()+1));
-			}else{
-				coordsOnItinery.add(new Coord((char)(this.getColonne()-1),this.getLigne()+1));
+		List<Coord> coordsOnItinery = new LinkedList<Coord>(); 
+		int initCol = this.getColonne();
+		int initLig = this.getLigne();
+		int colDistance = targetCoord.getColonne() - this.getColonne();
+		int ligDistance = targetCoord.getLigne() - this.getLigne();
+		int deltaLig = (int) Math.signum(ligDistance);
+		int deltaCol = (int) Math.signum(colDistance);
+
+		// Vérif déplacement en diagonale
+		if (Math.abs(colDistance) == Math.abs(ligDistance)){
+
+			// recherche coordonnées des cases traversées
+			for (int i = 1; i < Math.abs(colDistance); i++) {
+				Coord coord = new Coord((char) (initCol + i*deltaCol), initLig + i*deltaLig);
+				coordsOnItinery.add(coord);
 			}
 		}
-
 		return coordsOnItinery;
 	}
 
