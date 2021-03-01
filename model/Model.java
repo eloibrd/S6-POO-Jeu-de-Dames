@@ -95,7 +95,7 @@ public class Model implements BoardGame<Coord> {
 
 					// S'il n'y a pas eu de prise
 					// ou si une rafle n'est pas possible alors changement de joueur 
-					if (!isPieceToCapture) {	// TODO : Test é changer atelier 4
+					if (!isPieceToCapture || isRaflePossible()) {	// TODO : Test é changer atelier 4
 						this.switchGamer();
 					}
 
@@ -113,6 +113,11 @@ public class Model implements BoardGame<Coord> {
 
 		return outputModelData;
 
+	}
+
+	private boolean isRaflePossible() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	/**
