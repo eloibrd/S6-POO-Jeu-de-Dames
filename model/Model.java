@@ -94,7 +94,7 @@ public class Model implements BoardGame<Coord> {
 
 					// S'il n'y a pas eu de prise
 					// ou si une rafle n'est pas possible alors changement de joueur 
-					if (true) {	// TODO : Test é changer atelier 4
+					if (!isPieceToCapture) {	// TODO : Test é changer atelier 4
 						this.switchGamer();
 					}
 
@@ -124,7 +124,7 @@ public class Model implements BoardGame<Coord> {
 	boolean isPieceMoveable(Coord toMovePieceCoord, Coord targetSquareCoord) { // TODO : remettre en "private" aprés test unitaires
 		boolean bool = false;
 
-		// TODO : é compléter atelier 4 pour gérer les rafles 
+		// TODO : à compléter atelier 4 pour gérer les rafles 
 
 		bool = 	this.implementor.isPiecehere(toMovePieceCoord) 
 				&& this.implementor.getPieceColor(toMovePieceCoord) == this.currentGamerColor 
