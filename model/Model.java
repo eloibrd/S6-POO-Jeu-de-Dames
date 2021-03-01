@@ -83,7 +83,7 @@ public class Model implements BoardGame<Coord> {
 
 					// promotion éventuelle de la piéce aprés déplacement 
 					if(this.implementor.findPiece(targetSquareCoord) instanceof Promotable) {
-							if(((PawnModel)this.implementor.findPiece(targetSquareCoord)).isPromotable()) {
+							if(((Promotable)this.implementor.findPiece(targetSquareCoord)).isPromotable()) {
 								PieceSquareColor color = this.implementor.findPiece(targetSquareCoord).getPieceColor();
 								this.remove(targetSquareCoord);
 								QueenModel queen = new QueenModel(targetSquareCoord,color);
