@@ -26,7 +26,6 @@ public class View extends BorderPane {
 
 	public View (EventHandler<MouseEvent> clicListener) {
 		super();
-
 		// les cases et le pi�ces sur le damier seront �cout�es par l'objet
 		// pass� en param�tre au constructeur
 		board = new Board(clicListener);

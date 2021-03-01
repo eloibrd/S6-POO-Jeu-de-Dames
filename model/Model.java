@@ -99,7 +99,7 @@ public class Model implements BoardGame<Coord> {
 					if (!isPieceToCapture || !isRaflePossible(targetSquareCoord)) {	// TODO : Test é changer atelier 4
 						this.switchGamer();
 					}
-
+					
 				}
 			}
 		}
