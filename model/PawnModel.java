@@ -84,6 +84,7 @@ public class PawnModel extends AbstractPieceModel implements Promotable{
 		}else {
 			return false;
 		}
+		//return (this.getPieceColor() == PieceSquareColor.WHITE && this.getLigne()==10) || (this.getPieceColor() == PieceSquareColor.BLACK && this.getLigne()==1);
 	}
 
 	@Override
