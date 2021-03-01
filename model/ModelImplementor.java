@@ -189,4 +189,31 @@ public class ModelImplementor {
 		return "\nDamier du model \n" + st;	
 	}
 
+
+	public PieceSquareColor hasWinColor(){
+		boolean isWhitePiece = false;
+		boolean isBlackPiece = false;
+		PieceSquareColor color = null;
+
+		List<PieceModel> listPiece = new ArrayList<PieceModel>(this.pieces);
+
+		int i = 0;
+		while(i < this.pieces.size() && (!isWhitePiece || !isBlackPiece)){
+			if(PieceSquareColor.WHITE.equals(listPiece.get(i).getPieceColor())){
+				isWhitePiece = true;
+			}else{
+				isBlackPiece = true;
+			}
+			i++;
+		}
+
+		if(!isWhitePiece){
+			color = PieceSquareColor.BLACK;
+		}else if(!isBlackPiece){
+			color = PieceSquareColor.WHITE;
+		}
+
+		return color;
+	}
+
 }

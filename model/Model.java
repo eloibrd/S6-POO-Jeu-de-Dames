@@ -3,8 +3,11 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import controller.OutputModelData;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import nutsAndBolts.PieceSquareColor;
 
 /**
@@ -99,7 +102,23 @@ public class Model implements BoardGame<Coord> {
 					if (!isPieceToCapture || !isRaflePossible(targetSquareCoord)) {	// TODO : Test é changer atelier 4
 						this.switchGamer();
 					}
+					// fin du jeu
+					PieceSquareColor hasWinColor = this.implementor.hasWinColor();
+					System.out.print(hasWinColor);
+					if( hasWinColor != null){
+						Alert alert = new Alert(Alert.AlertType.INFORMATION);
+						alert.setTitle("Partie Finie");
 
+						String colorText = (hasWinColor==PieceSquareColor.WHITE)? "blancs" : "noirs";
+						String contentText = "Les " +colorText + " gagnent la partie !";
+						alert.setContentText(contentText);
+
+						Optional<ButtonType> result = alert.showAndWait();
+						if(!result.isPresent())
+							System.exit(0);
+						else if(result.get() == ButtonType.OK)
+							System.exit(0);
+					}
 				}
 			}
 		}
