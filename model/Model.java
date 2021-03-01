@@ -70,7 +70,7 @@ public class Model implements BoardGame<Coord> {
 
 				// si le déplacement est légal (en diagonale selon algo pion ou dame)
 				boolean isPieceToCapture = toCapturePieceCoord != null;
-				System.out.println("IS PIECE TO CAPTURE:"+isPieceToCapture);
+				//System.out.println("IS PIECE TO CAPTURE:"+isPieceToCapture);
 				//System.out.println("IS MOVE PIECE POSSIBLE:"+this.isMovePiecePossible(toMovePieceCoord, targetSquareCoord, isPieceToCapture));
 				if (this.isMovePiecePossible(toMovePieceCoord, targetSquareCoord, isPieceToCapture)) {
 
@@ -95,7 +95,7 @@ public class Model implements BoardGame<Coord> {
 
 					// S'il n'y a pas eu de prise
 					// ou si une rafle n'est pas possible alors changement de joueur 
-					System.out.println("IS RAFFLE POSSIBLE:"+isRaflePossible(targetSquareCoord));
+					//System.out.println("IS RAFFLE POSSIBLE:"+isRaflePossible(targetSquareCoord));
 					if (!isPieceToCapture || !isRaflePossible(targetSquareCoord)) {	// TODO : Test é changer atelier 4
 						this.switchGamer();
 					}
@@ -117,28 +117,43 @@ public class Model implements BoardGame<Coord> {
 	}
 
 	private boolean isRaflePossible(Coord initCoord) {
-		Coord target1 = new Coord((char)(initCoord.getColonne()+2),initCoord.getLigne()+2);
-		Coord target2 = new Coord((char)(initCoord.getColonne()-2),initCoord.getLigne()+2);
-		Coord target3 = new Coord((char)(initCoord.getColonne()-2),initCoord.getLigne()-2);
-		Coord target4 = new Coord((char)(initCoord.getColonne()+2),initCoord.getLigne()-2);
-		boolean res1 = false;
-		if(Coord.coordonnees_valides(target1) && !this.implementor.isPiecehere(target1)) {
-			res1 = getToCapturePieceCoord(initCoord,target1) != null;
-		}
-		boolean res2 = false;
-		if(Coord.coordonnees_valides(target2)  && !this.implementor.isPiecehere(target2)) {
-			res2= getToCapturePieceCoord(initCoord,target2) != null;
-		}
-		boolean res3 = false;
-		if(Coord.coordonnees_valides(target3) &&  !this.implementor.isPiecehere(target3)) {
-			res3= getToCapturePieceCoord(initCoord,target3) != null;
-		}
-		boolean res4 = false;
-		if(Coord.coordonnees_valides(target4) && !this.implementor.isPiecehere(target4)) {
-			res4= getToCapturePieceCoord(initCoord,target4) != null;
+		if(this.implementor.findPiece(initCoord) instanceof PawnModel) {
+			Coord target1 = new Coord((char)(initCoord.getColonne()+2),initCoord.getLigne()+2);
+			Coord target2 = new Coord((char)(initCoord.getColonne()-2),initCoord.getLigne()+2);
+			Coord target3 = new Coord((char)(initCoord.getColonne()-2),initCoord.getLigne()-2);
+			Coord target4 = new Coord((char)(initCoord.getColonne()+2),initCoord.getLigne()-2);
+			boolean res1 = false;
+			if(Coord.coordonnees_valides(target1) && !this.implementor.isPiecehere(target1)) {
+				res1 = getToCapturePieceCoord(initCoord,target1) != null;
+			}
+			boolean res2 = false;
+			if(Coord.coordonnees_valides(target2)  && !this.implementor.isPiecehere(target2)) {
+				res2= getToCapturePieceCoord(initCoord,target2) != null;
+			}
+			boolean res3 = false;
+			if(Coord.coordonnees_valides(target3) &&  !this.implementor.isPiecehere(target3)) {
+				res3= getToCapturePieceCoord(initCoord,target3) != null;
+			}
+			boolean res4 = false;
+			if(Coord.coordonnees_valides(target4) && !this.implementor.isPiecehere(target4)) {
+				res4= getToCapturePieceCoord(initCoord,target4) != null;
+			}
+			
+			return res1 || res2 || res3 || res4;
+		}else {
+			ArrayList<Coord> coords = ((QueenModel)this.implementor.findPiece(initCoord)).getAllPossibleCoordItinerary();
+			boolean ret = false;
+			for(Coord coord : coords) {
+				if(Coord.coordonnees_valides(coord) &&  !this.implementor.isPiecehere(coord)) {
+					ret= getToCapturePieceCoord(initCoord,coord) != null;
+					if(ret) {
+						break;
+					}
+				}
+			}
+			return ret;
 		}
 		
-		return res1 || res2 || res3 || res4;
 	}
 
 	/**

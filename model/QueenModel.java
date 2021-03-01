@@ -120,6 +120,52 @@ public class QueenModel extends AbstractPieceModel {
 		
 		return ret;
 	}
+	
+	public ArrayList<Coord> getAllPossibleCoordItinerary(){
+		ArrayList<Coord> listCoord = new ArrayList<Coord>();
+		//------------------------HAUT DROITE---------------------------------
+		int line = this.getLigne();
+		char col = this.getColonne();
+		Coord coord = new Coord(this.getColonne(),this.getLigne());
+
+		while(Coord.coordonnees_valides(coord)) {
+			line++;
+			col++;
+			coord = new Coord(col,line);
+			listCoord.add(coord);
+		}
+		//--------------------------HAUT GAUCHE--------------------------------
+		line = this.getLigne();
+		col = this.getColonne();
+		coord = new Coord(this.getColonne(),this.getLigne());
+		while(Coord.coordonnees_valides(coord)) {
+			line++;
+			col--;
+			coord = new Coord(col,line);
+			listCoord.add(coord);
+		}
+		//--------------------------BAS  GAUCHE--------------------------------
+		line = this.getLigne();
+		col = this.getColonne();
+		coord = new Coord(this.getColonne(),this.getLigne());
+		while(Coord.coordonnees_valides(coord)) {
+			line--;
+			col--;
+			coord = new Coord(col,line);
+			listCoord.add(coord);
+		}
+		//--------------------------BAS  DROITE--------------------------------
+		line = this.getLigne();
+		col = this.getColonne();
+		coord = new Coord(this.getColonne(),this.getLigne());
+		while(Coord.coordonnees_valides(coord)) {
+			line--;
+			col++;
+			coord = new Coord(col,line);
+			listCoord.add(coord);
+		}
+		return listCoord;
+	}
 
 
 }
