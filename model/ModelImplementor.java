@@ -151,7 +151,7 @@ public class ModelImplementor {
 
 		//Tri de la liste
 		List<PieceModel> listPiece = new ArrayList<PieceModel>(this.pieces);
-		Collections.sort(listPiece, Collections.reverseOrder());
+		Collections.sort(listPiece, new PieceComparator());
 
 		// Affichage par ordre d'insertion
 		ListIterator<PieceModel> pieceIterator = listPiece.listIterator();

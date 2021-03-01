@@ -16,11 +16,15 @@ public class PawnModel extends AbstractPieceModel implements Promotable{
 	@Override
 	public int compareTo(PieceModel p1){
 		if(p1.getLigne() < this.getLigne()){
-			return 1;
-		}else if(p1.getLigne() == this.getLigne()){
-			return 0;
-		}else{
 			return -1;
+		}else if(p1.getLigne() == this.getLigne()){
+			if(p1.getColonne() - 'a' < this.getColonne() - 'a'){
+				return 1;
+			}else{
+				return -1;
+			}
+		}else{
+			return 1;
 		}
 	}
 

@@ -16,7 +16,7 @@ public abstract class AbstractPieceModel implements PieceModel {
 		this.pieceColor=pieceColor;
 
 	}
-	
+
 	@Override
 	public char getColonne() {
 		return this.coord.getColonne();
