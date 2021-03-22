@@ -1,17 +1,22 @@
 package controller.localController;
 
 
+import java.util.Optional;
+
 import controller.InputViewData;
 import controller.Mediator;
 import controller.OutputModelData;
 import gui.CheckersSquareGui;
 import gui.View;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import model.BoardGame;
 import model.Coord;
 import model.ModelConfig;
+import nutsAndBolts.PieceSquareColor;
 
 
 /**
@@ -149,6 +154,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 			InputViewData<Integer> dataToRefreshView = new InputViewData<Integer>(toMovePieceIndex,targetSquareIndex,capturedPieceIndex,promotedPieceIndex,outPutCoordData.promotedPieceColor) ;
 
 			view.actionOnGui(dataToRefreshView);
+			view.finJeu(model.isGameOver());
 		}
 		// Inutile de reconstituer un objetOutputModelData<Integer>, aucun client ne le récupére en mode local
 		return outputControllerData;
@@ -176,6 +182,11 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 			squareIndex = (length - coord.getLigne()) * length + (coord.getColonne()-'a');
 		}
 		return squareIndex;
+	}
+
+	@Override
+	public PieceSquareColor isGameOver() {
+		return model.isGameOver();
 	}
 
 

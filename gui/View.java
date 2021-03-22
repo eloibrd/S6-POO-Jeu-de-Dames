@@ -1,13 +1,18 @@
 package gui;
 
+import java.util.Optional;
+
 import controller.InputViewData;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import nutsAndBolts.PieceSquareColor;
 
 /**
  * @author francoise.perrin
@@ -88,6 +93,21 @@ public class View extends BorderPane {
 			pane.add(label1, 0, 10-c+1);
 		}
 		return pane;
+	}
+	
+	public void finJeu(PieceSquareColor color) {
+		if( color != null){
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle("Partie Finie");
+			String colorText = (color==PieceSquareColor.WHITE)? "blancs" : "noirs";
+			String contentText = "Les " +colorText + " gagnent la partie !";
+			alert.setContentText(contentText);
+			Optional<ButtonType> result = alert.showAndWait();
+			if(!result.isPresent())
+				System.exit(0);
+			else if(result.get() == ButtonType.OK)
+				System.exit(0);
+		}
 	}
 
 	

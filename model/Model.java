@@ -102,23 +102,8 @@ public class Model implements BoardGame<Coord> {
 					if (!isPieceToCapture || !isRaflePossible(targetSquareCoord)) {	// TODO : Test é changer atelier 4
 						this.switchGamer();
 					}
-					// fin du jeu
-					PieceSquareColor hasWinColor = this.implementor.hasWinColor();
-					System.out.print(hasWinColor);
-					if( hasWinColor != null){
-						Alert alert = new Alert(Alert.AlertType.INFORMATION);
-						alert.setTitle("Partie Finie");
-
-						String colorText = (hasWinColor==PieceSquareColor.WHITE)? "blancs" : "noirs";
-						String contentText = "Les " +colorText + " gagnent la partie !";
-						alert.setContentText(contentText);
-
-						Optional<ButtonType> result = alert.showAndWait();
-						if(!result.isPresent())
-							System.exit(0);
-						else if(result.get() == ButtonType.OK)
-							System.exit(0);
-					}
+					
+					
 				}
 			}
 		}
@@ -224,23 +209,7 @@ public class Model implements BoardGame<Coord> {
 	 * @return les coord de la piéce à prendre, null sinon
 	 */
 	private Coord getToCapturePieceCoord(Coord toMovePieceCoord, Coord targetSquareCoord) {
-//		Coord toCapturePieceCoord = null;
-//		if(isThereMaxOnePieceOnItinerary(toMovePieceCoord,targetSquareCoord)) {
-//			List<Coord> coordList = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
-//			if(!coordList.isEmpty()) {
-//				List<Coord> pieceList = new ArrayList<Coord>();
-//				for(Coord coord : coordList) {
-//					System.out.println("COORD:"+coord);
-//					if(this.implementor.isPiecehere(coord)) {
-//						pieceList.add(coord);
-//					}
-//				}
-//				if(pieceList.size()!=0) {
-//					return pieceList.get(0);
-//				}
-//			}
-//		}
-//		return toCapturePieceCoord;
+
 		Coord toCapturePieceCoord = null;
 		List<Coord> coordsOnItinerary = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
 
@@ -299,6 +268,15 @@ public class Model implements BoardGame<Coord> {
 				PieceSquareColor.BLACK : PieceSquareColor.WHITE;
 
 	}
+
+	@Override
+	public PieceSquareColor isGameOver() {
+		PieceSquareColor hasWinColor = this.implementor.hasWinColor();
+		System.out.print(hasWinColor);
+		
+		return hasWinColor;
+	}
+	
 
 
 }
